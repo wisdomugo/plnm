@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <form method="post" [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-group">
+        <label class="col-md-4">Full Name</label>
+        <input type="text" class="form-control" formControlName="fullName" />
+      </div>
+
+      <div class="form-group">
+        <div class="preview" *ngIf="preview && preview !== null">
+          <img [src]="preview" [alt]="vehicleForm.value.name">
+        </div>
+      </div>
+
+      <!--<div class="form-group">
+        <label class="col-md-4">Upload Purchase Receipt</label>
+        <input type="text" class="form-control" formControlName="purchaseReceipt" />
+      </div>-->
+      <div class="form-group">
+        <label class="col-md-4">Upload Purchase Receipt </label>
+        <input type="file" class="form-control"  (change)="uploadFile($event)" formControlName="purchaseReceipt" name="purchaseReceipt"/>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-3">
+              <button class="btn btn-success btn-sm btn-block" type="submit">Register Vehicle</button>
+          </div>
+        </div>
+        </div>
+      
+    </form>
+  </div>
+</div>

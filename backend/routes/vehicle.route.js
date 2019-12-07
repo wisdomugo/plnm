@@ -1,30 +1,37 @@
 let express = require('express'),
-  path = require('path'),
   multer = require('multer'),
+   mongoose = require('mongoose'),
+  vehicleRouter = express.Router();
 
-  app = express();
-
-  const DIR = '../uploads/';
+  const DIR = './uploads/';
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, DIR);
     },
     filename: (req, file, cb) => {
-      const fileName = file.fieldname + '-' + Date.now();
+      const fileName = file.fieldname + '-' + Date.now() + '.' + file.mimetype.split('/')[1];
       cb(null, fileName)
     }
   });
-  
-  let upload = multer({ 
-    storage: storage
+
+  upload = multer({ 
+    storage: storage,
+    limits: {
+      fileSize: '40mb'
+    },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        cb(null, true);
+      } else {
+        cb(null, false);
+        return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+      }
+    }
   })
 
-vehicleRouter = express.Router();
 
 // Vehicle model
 let Vehicle = require('../models/Vehicle');
-
-app.use(express.static(path.join(__dirname, '../uploads')));
 
 
 // Get All Employees
@@ -40,27 +47,22 @@ vehicleRouter.route('/').get((req, res, next) => {
 
 
 
-vehicleRouter.post('/register', upload.single('purchaseReceipt'), (req, res, next) => {
-  res.json(req.file.filename)
-  return;
-
-/*vehicleRouter.post('/register', upload.single('purchaseReceipt'), (req, res, next) => {
-  res.json(req.file)
-  return;
-  const vehicle = new Vehicle({
-    fullName: req.body.fullName,
-    purchaseReceipt: req.file.filename
-  });
-  vehicle.save().then(result => {
-    console.log(result);
-    res.status(201).json({
-      message: "Vehicle registered successfully!",
-      userCreated: {
-        _id: result._id,
-        name: result.name,
-        purchaseReceipt: result.purchaseReceipt
-      }
-    })
+vehicleRouter.post('/register', upload.single('purchaseReceipt'),
+  (req, res, next) => {
+    const vehicle = new Vehicle({
+      fullName: req.body.fullName,
+      purchaseReceipt: req.file.filename
+    });
+    vehicle.save().then(result => {
+      console.log(result);
+      res.status(201).json({
+        message: "Vehicle registered successfully!",
+        VehicleCreated: {
+          _id: result._id,
+          name: result.name,
+          purchaseReceipt: result.purchaseReceipt
+        }
+      })
   })
   
   /*Vehicle.create(req.body, (error, data) => {
@@ -74,5 +76,4 @@ vehicleRouter.post('/register', upload.single('purchaseReceipt'), (req, res, nex
   //res.json('from register vehicle')
   })
 
-  app.use(express.static(path.join(__dirname, './uploads')));
 module.exports = vehicleRouter;

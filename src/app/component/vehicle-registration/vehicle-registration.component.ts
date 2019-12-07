@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VehicleService } from '../../service/vehicle.service';
 
@@ -8,16 +8,17 @@ import { VehicleService } from '../../service/vehicle.service';
   styleUrls: ['./vehicle-registration.component.css']
 })
 export class VehicleRegistrationComponent implements OnInit {
+
   preview: string;
   vehicleForm: FormGroup;
-  formdata: FormData;
+  formdata = new FormData();
 
-  constructor(public fb: FormBuilder, private vs: VehicleService) { 
-    this.createForm()
+
+  constructor(private el: ElementRef, public fb: FormBuilder, private vs: VehicleService) { 
+    this.createForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   createForm() {
     this.vehicleForm = this.fb.group({
@@ -28,10 +29,10 @@ export class VehicleRegistrationComponent implements OnInit {
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.vehicleForm.patchValue({
-      avatar: file
+    /*this.vehicleForm.patchValue({
+      'purchaseReceipt': file
     });
-    this.vehicleForm.get('avatar')
+    this.vehicleForm.get('purchaseReceipt').setValue(file)*/
     // .updateValueAndValidity()
 
     // File Preview
@@ -44,8 +45,15 @@ export class VehicleRegistrationComponent implements OnInit {
 
 
   onSubmit() {
-    this.formdata.set('purchaseReceipt', this.vehicleForm.value);
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#purch');
+    let fileCount: number = inputEl.files.length;
 
+    /*console.log(fileCount);
+    return;*/
+
+    if (fileCount > 0) {
+    this.formdata.append('purchaseReceipt', inputEl.files.item(0));
+    }
     if (!this.vehicleForm.valid) {
       return false;
     } else {
@@ -61,5 +69,7 @@ export class VehicleRegistrationComponent implements OnInit {
        );
     }
   }
+
+
 
 }

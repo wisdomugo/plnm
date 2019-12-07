@@ -24,9 +24,16 @@ app.use(bodyParser.urlencoded({
    extended: false
 }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, './uploads')));
-app.use(express.static(path.join(__dirname, 'dist/plate')));
-app.use('/', express.static(path.join(__dirname, 'dist/plate')));
+app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'dist/plnm')));
+app.use('/', express.static(path.join(__dirname, 'dist/plnm')));
+app.use(function(req, res, next) { //allow cross origin requests
+   res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+   res.header("Access-Control-Allow-Origin", req.headers.origin);
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   res.header("Access-Control-Allow-Credentials", true);
+   next();
+});
 
 const port = 3000;
 const server = app.listen(port, () => {

@@ -1,0 +1,3 @@
+.preview img{width: 40%; float: right; border: 1px gray solid; }
+.preview{float: right;}
+.form-group{min-height: 200px !important; border-bottom: 1px gray solid;}

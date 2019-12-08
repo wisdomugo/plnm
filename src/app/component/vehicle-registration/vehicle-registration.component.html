@@ -1,24 +1,139 @@
+fullName: string;
+    purchaseReceipt: string;
+    proofOfOwnership: string;
+    meansOfIdentification: string;
+    passport: string;
+    customPapers: string;
+    insurancePapers: string;
+    vehicleImage: string;
+    vehicleEngineNumber: string;
+    state: string;
+    lga: string;
+    age: string;
+
 <div class="card">
   <div class="card-body">
     <form method="post" [formGroup]="vehicleForm" (ngSubmit)="onSubmit()"
     enctype="multipart/form-data">
-      <div class="form-group">
-        <label class="col-md-4">Full Name</label>
-        <input type="text" class="form-control" formControlName="fullName" />
-      </div>
 
-      <div class="form-group">
-        <div class="preview" *ngIf="preview && preview !== null">
-          <img [src]="preview" [alt]="vehicleForm.value.name">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control" formControlName="fullName" name="fullName" />
+              </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Upload Purchase Receipt </label>
+                <div class="preview" *ngIf="purchaseReceiptPreview && purchaseReceiptPreview !== null">
+                  <img [src]="purchaseReceiptPreview" [alt]="vehicleForm.value.name">
+                </div>
+
+                <input type="file" class="form-control"  (change)="uploadFile($event)" 
+                 formControlName="purchaseReceipt" name="purchaseReceipt" id="purch"/>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Proof Of Ownership Document</label>
+                <div class="preview" *ngIf="proofOfOwnershipPreview && proofOfOwnershipPreview !== null">
+                  <img [src]="proofOfOwnershipPreview" [alt]="vehicleForm.value.name">
+                </div>
+
+                <input type="file" class="form-control"  (change)="uploadFile($event)" 
+                 formControlName="proofOfOwnership" name="proofOfOwnership" id="proofOfOwnership"/>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+              <label>Means of Identification</label>
+              <div class="preview" *ngIf="meansOfIdentificationPreview && meansOfIdentificationPreview !== null">
+                <img [src]="meansOfIdentificationPreview" [alt]="vehicleForm.value.name">
+              </div>
+
+              <input type="file" class="form-control"  (change)="uploadFile($event)" 
+               formControlName="meansOfIdentification" name="meansOfIdentification" id="meansOfIdentification"/>
+          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+            <label>Passport</label>
+            <div class="preview" *ngIf="passportPreview && passportPreview !== null">
+              <img [src]="passportPreview" [alt]="vehicleForm.value.name">
+            </div>
+
+            <input type="file" class="form-control"  (change)="uploadFile($event)" 
+             formControlName="passport" name="passport" id="passport"/>
         </div>
       </div>
 
+    <div class="col-sm-4">
       <div class="form-group">
-        <label class="col-md-4">Upload Purchase Receipt </label>
-        <input type="file" class="form-control"  (change)="uploadFile($event)" 
-         formControlName="purchaseReceipt" name="purchaseReceipt" id="purch"/>
+          <label>Upload Custom Papers</label>
+          <div class="preview" *ngIf="customPapersPreview && customPapersPreview !== null">
+            <img [src]="customPapersPreview" [alt]="vehicleForm.value.name">
+          </div>
+          <input type="file" class="form-control"  (change)="uploadFile($event)" 
+           formControlName="customPapers" name="customPapers" id="customPapers"/>
       </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>Upload Insurance Papers</label>
+          <div class="preview" *ngIf="insurancePapersPreview && insurancePapersPreview !== null">
+            <img [src]="insurancePapersPreview" [alt]="vehicleForm.value.name">
+          </div>
 
+          <input type="file" class="form-control"  (change)="uploadFile($event)" 
+           formControlName="insurancePapers" name="insurancePapers" id="insurancePapers"/>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>Upload Vehicle Image</label>
+          <div class="preview" *ngIf="vehicleImagePreview && vehicleImagePreview !== null">
+            <img [src]="vehicleImagePreview" [alt]="vehicleForm.value.name">
+          </div>
+          
+          <input type="file" class="form-control"  (change)="uploadFile($event)" 
+           formControlName="vehicleImage" name="vehicleImage" id="vehicleImage"/>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>Engine Number</label>
+          <input type="text" class="form-control" formControlName="vehicleEngineNumber" name="vehicleEngineNumber" />
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" formControlName="state" name="state" />
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>L.G.A</label>
+          <input type="text" class="form-control" formControlName="lga" name="lga" />
+        </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+          <label>Age</label>
+          <input type="text" class="form-control" formControlName="age" name="age" />
+        </div>
+    </div>
+
+
+  </div>
+    
       <div class="form-group">
         <div class="row">
           <div class="col-sm-3">

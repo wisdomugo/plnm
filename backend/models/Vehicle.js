@@ -7,8 +7,7 @@ let vehicleSchema = new Schema({
     },
     fullName: {
       type: String
-    }
-    /*
+    },
     proofOfOwnership: {
       type: String
     },
@@ -30,9 +29,6 @@ let vehicleSchema = new Schema({
     vehicleEngineNumber: {
         type: String
       },
-    fullName: {
-        type: String
-      },
     state: {
         type: String
       },
@@ -40,8 +36,8 @@ let vehicleSchema = new Schema({
         type: String
       },
     age: {
-        type: String
-      }*/ 
+        type: Number
+      }
   }, {
       collection: 'vehicles'
     })

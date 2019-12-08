@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'uploads')));
+app.use('./uploads', express.static(path.join(__dirname, './uploads')));
 app.use(express.static(path.join(__dirname, 'dist/plnm')));
 app.use('/', express.static(path.join(__dirname, 'dist/plnm')));
 app.use(function(req, res, next) { //allow cross origin requests

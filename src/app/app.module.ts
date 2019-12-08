@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { VehicleRegistrationComponent } from './component/vehicle-registration/vehicle-registration.component';
 import { ApplicantDataComponent } from './component/applicant-data/applicant-data.component';
+import { DriverLicenceComponent } from './component/driver-licence/driver-licence.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ApplicantDataComponent } from './component/applicant-data/applicant-dat
     HomeComponent,
     VehicleRegistrationComponent,
     FileSelectDirective,
-    ApplicantDataComponent
+    ApplicantDataComponent,
+    DriverLicenceComponent
   ],
   imports: [
     BrowserModule,

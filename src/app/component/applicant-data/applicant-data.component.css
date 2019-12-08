@@ -1,0 +1,3 @@
+.preview { width: 100%; min-height: 300px; max-height: 300px; border: 1px gray solid; }
+.form-group{ border-bottom: 1px gray solid;}
+label{font-size: medium; font-weight: bold;}

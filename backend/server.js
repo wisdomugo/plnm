@@ -42,7 +42,13 @@ const server = app.listen(port, () => {
  })
 
 const vehicleRouter = require('../backend/routes/vehicle.route')
+const driverLicenceRouter = require('../backend/routes/driverLicence.route')
+const userRouter = require('../backend/routes/user.route')
+
 app.use('/vehicle', vehicleRouter)
+app.use('/driver', driverLicenceRouter)
+app.use('/auth', userRouter)
+
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {

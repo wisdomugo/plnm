@@ -137,7 +137,7 @@ export class VehicleRegistrationComponent implements OnInit {
          (res) => {
          console.log(res);
          //this.router.navigateByUrl('applicant-data', { state: { hello: 'world' } })
-         this.router.navigate(['applicant-data']);
+         this.router.navigate(['apply/driver-licence']);
          },
          (error) => {
            console.log(error);

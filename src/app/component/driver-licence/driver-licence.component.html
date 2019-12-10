@@ -1,3 +1,88 @@
-<p>
-  driver-licence works!
-</p>
+<div class="card">
+    <div class="card-body">
+      <h5>Driving Licence Info</h5>
+      <form method="post" [formGroup]="drivLicenceForm" (ngSubmit)="onSubmit()"
+      enctype="multipart/form-data">
+  
+      <div class="row">
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" class="form-control" formControlName="fullName" name="fullName" />
+                </div>
+          </div>
+  
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label>State of Origin </label>
+                  <input type="text" class="form-control" formControlName="stateOrigin" name="stateOrigin" />
+              </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+                <label>Upload Driver Licence Document</label>
+                <div class="preview" *ngIf="driverLicenceDocPreview && driverLicenceDocPreview !== null">
+                  <img [src]="driverLicenceDocPreview" [alt]="drivLicenceForm.value.name">
+                </div>
+
+                <input type="file" class="form-control"  (change)="uploadFile($event)" 
+                 formControlName="driverLicenceDoc" name="driverLicenceDoc"/>
+            </div>
+        </div>
+
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label>Local Government Origin</label>
+                  <input type="text" class="form-control" formControlName="lgaOrigin" name="lgaOrigin" />
+              </div>
+          </div>
+  
+          <div class="col-sm-4">
+            <div class="form-group">
+                <label>Issue Date</label>
+                <input type="text" class="form-control" formControlName="issueDate" name="issueDate" />
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+              <label>Expiry Date</label>
+              <input type="text" class="form-control" formControlName="expiryDate" name="expiryDate" />
+          </div>
+        </div>
+  
+      <div class="col-sm-4">
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="text" class="form-control" formControlName="dateBirth" name="dateBirth" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+            <label>Blood Group</label>
+            <input type="text" class="form-control" formControlName="bloodGroup" name="bloodGroup" />
+        </div>
+      </div>
+  
+      <div class="col-sm-4">
+        <div class="form-group">
+            <label>Vehicle Category</label>
+            <input type="text" class="form-control" formControlName="vehicleCategory" name="vehicleCategory" />
+        </div>
+      </div>
+  
+  
+    </div>
+      
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-success btn-sm btn-block" type="submit">Submit Driver Licence</button>
+            </div>
+          </div>
+          </div>
+        
+      </form>
+    </div>
+  </div>

@@ -10,6 +10,7 @@ import { HomeComponent } from './component/home/home.component';
 import { VehicleRegistrationComponent } from './component/vehicle-registration/vehicle-registration.component';
 import { ApplicantDataComponent } from './component/applicant-data/applicant-data.component';
 import { DriverLicenceComponent } from './component/driver-licence/driver-licence.component';
+import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { DriverLicenceComponent } from './component/driver-licence/driver-licenc
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

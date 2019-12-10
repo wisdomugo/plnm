@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-body">
+    
+    <form method="post" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="row">
+    <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h5>Login</h5>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" class="form-control" formControlName="email" name="email" />
+              </div>
+  
+              <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control" formControlName="password" name="password" />
+              </div>
+  
+              <div class="form-group">
+                <button class="btn btn-success btn-sm btn-block" type="submit">Login</button>
+              </div>
+        </div>
+      </div>
+  
+    </form>
+    <br>
+    <div *ngIf="loginInvalid" class="alert alert-danger">Invalid Login Info</div>
+  </div>
+  </div>

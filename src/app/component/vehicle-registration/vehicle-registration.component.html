@@ -1,18 +1,6 @@
-fullName: string;
-    purchaseReceipt: string;
-    proofOfOwnership: string;
-    meansOfIdentification: string;
-    passport: string;
-    customPapers: string;
-    insurancePapers: string;
-    vehicleImage: string;
-    vehicleEngineNumber: string;
-    state: string;
-    lga: string;
-    age: string;
-
 <div class="card">
   <div class="card-body">
+    <h5>Vehicle Data</h5>
     <form method="post" [formGroup]="vehicleForm" (ngSubmit)="onSubmit()"
     enctype="multipart/form-data">
 

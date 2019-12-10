@@ -14,18 +14,17 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  registerVehicle(data): Observable<any>{
-    // console.log(data);
+  registerVehicle(data): Observable<any> {
     const url = `${this.baseUri}/register`;
     return this.http.post(url, data);
   }
 
-  // Get all employees
+  // Get all vehicles
   getVehicles() {
     return this.http.get(`${this.baseUri}`);
   }
 
-  // Get employee
+  // Get a vehicle
   getVehicle(id): Observable<any> {
     let url = `${this.baseUri}/read/${id}`;
     return this.http.get(url, {headers: this.headers}).pipe(

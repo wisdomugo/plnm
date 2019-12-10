@@ -14,6 +14,31 @@
                   Register Vehicle Info To Apply
                 </a>
               </li> 
+              
+            </ul>
+          </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-sm bg-light" style="float:right; margin-left: 80px;">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+             
+              <li class="nav-item">
+                <a routerLink="user/register" class="nav-link btn-primary" routerLinkActive="active">
+                  Create Account
+                </a>
+              </li> 
+
+              <li class="nav-item">
+                  <a *ngIf="!authServ.isAuthenticated()" routerLink="user/login" class="nav-link btn-primary" routerLinkActive="active">
+                    Login
+                  </a>
+
+                  <a *ngIf="authServ.isAuthenticated()" href="javascript:void " class="nav-link btn-default">
+                    Welcome {{authServ.currentUser.firstName}}
+                  </a>
+                </li> 
+              
             </ul>
           </div>
         </nav>

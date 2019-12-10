@@ -5,6 +5,9 @@ let DriverLicenceSchema = new Schema({
     fullName: {
       type: String
     },
+    user: {
+      type: String, ref: 'User'
+    },
     stateOrigin: {
       type: String
     },

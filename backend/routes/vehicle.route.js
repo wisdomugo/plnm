@@ -71,7 +71,8 @@ vehicleRouter.post('/register', docsUpload,
       vehicleEngineNumber: req.body.vehicleEngineNumber,
       state: req.body.state,
       lga: req.body.lga,
-      age: req.body.age
+      age: req.body.age,
+      user: req.body.user
     });
     vehicle.save().then(result => {
       console.log(result);
@@ -89,7 +90,7 @@ vehicleRouter.post('/register', docsUpload,
 
   // Get An Employee
 vehicleRouter.route('/read/:id').get((req, res, next) => {
-  Vehicle.findById(req.params.id, (error, data) => {
+  Vehicle.find({ 'user': req.params.id}, (error, data) => {
     if (error) {
       return next(error)
     } else {

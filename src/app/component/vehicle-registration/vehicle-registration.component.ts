@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {RouterModule, Router } from '@angular/router';
+import {RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { VehicleService } from '../../service/vehicle.service';
 
 @Component({
@@ -10,6 +10,9 @@ import { VehicleService } from '../../service/vehicle.service';
 })
 export class VehicleRegistrationComponent implements OnInit {
 
+  // userid = this.getUserId();
+  userid: string;
+  
   // set preview images
   purchaseReceiptPreview: string;
   proofOfOwnershipPreview: string;
@@ -24,12 +27,20 @@ export class VehicleRegistrationComponent implements OnInit {
   formdata = new FormData();
 
 
-  constructor(private el: ElementRef, public fb: FormBuilder, 
-    private router: Router, private vs: VehicleService) { 
+  constructor(private el: ElementRef, public fb: FormBuilder,
+    private router: Router, private vs: VehicleService, private actRoute: ActivatedRoute) {
     this.createForm();
+    this.getUserId();
   }
 
   ngOnInit() { }
+
+  getUserId() {
+    this.actRoute.queryParams.subscribe(params => {
+      this.userid = params.userid;
+      // return userid;
+    });
+  }
 
   createForm() {
     this.vehicleForm = this.fb.group({
@@ -126,6 +137,7 @@ export class VehicleRegistrationComponent implements OnInit {
     Array.prototype.forEach.call(inputEl, element => {
       this.formdata.append(element.name, element.value);
     });
+    this.formdata.append('user', this.userid)
           /* for (var value of this.formdata.entries()) {
             console.log(value); 
           }*/
@@ -136,8 +148,7 @@ export class VehicleRegistrationComponent implements OnInit {
        .subscribe(
          (res) => {
          console.log(res);
-         //this.router.navigateByUrl('applicant-data', { state: { hello: 'world' } })
-         this.router.navigate(['apply/driver-licence']);
+         this.router.navigate(['apply/driver-licence'], {queryParams: {userid: this.userid}});
          },
          (error) => {
            console.log(error);

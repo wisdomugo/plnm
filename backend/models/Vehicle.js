@@ -5,6 +5,9 @@ let vehicleSchema = new Schema({
     purchaseReceipt: {
       type: String
     },
+    user: {
+      type: String, ref: 'User'
+    },
     fullName: {
       type: String
     },

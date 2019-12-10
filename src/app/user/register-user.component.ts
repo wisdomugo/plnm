@@ -39,10 +39,9 @@ export class RegisterUserComponent implements OnInit {
       this.authServ.registerUser(this.userForm.value)
        .subscribe(
          (res) => {
-         console.log(res);
-         console.log(res.email)
-         //this.authServ.login(res.email, res.password);
-         this.router.navigate(['vehicle/register']);
+         console.log(res['result']._id);
+         // this.authServ.login(res.email, res.password);
+         this.router.navigate(['vehicle/register'], {queryParams: {userid: res['result']._id}});
          },
          (error) => {
            console.log(error);

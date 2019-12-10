@@ -58,7 +58,8 @@ driverLicenceRouter.post('/save-licence', upload.single('driverLicenceDoc'),
       expiryDate: req.body.expiryDate,
       dateBirth: req.body.dateBirth,
       bloodGroup: req.body.bloodGroup,
-      vehicleCategory: req.body.vehicleCategory
+      vehicleCategory: req.body.vehicleCategory,
+      user: req.body.user
 
     });
     driverlicence.save().then(result => {
@@ -71,7 +72,7 @@ driverLicenceRouter.post('/save-licence', upload.single('driverLicenceDoc'),
 
   // Get A Driver Licence
   driverLicenceRouter.route('/read/:id').get((req, res, next) => {
-  DriverLicence.findById(req.params.id, (error, data) => {
+  DriverLicence.find({ 'user': req.params.id}, (error, data) => {
     if (error) {
       return next(error)
     } else {

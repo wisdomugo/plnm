@@ -26,7 +26,7 @@ userRouter.post('/register', (req, res, next) => {
       password: req.body.password
     });
     user.save().then(result => {
-      console.log(result);
+      //console.log(result);
       res.status(201).json({
         result
       })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../../service/vehicle.service';
 import { DriverLicenceService } from '../../service/driver-licence.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-applicant-data',
@@ -8,24 +9,38 @@ import { DriverLicenceService } from '../../service/driver-licence.service';
   styleUrls: ['./applicant-data.component.css']
 })
 export class ApplicantDataComponent implements OnInit {
+   
+   userid: string;
+
   Vehicle = {};
   DriverLicence = {};
   plateNumber: string;
 
-  constructor(private vs: VehicleService, private dls: DriverLicenceService) {
+  constructor(private vs: VehicleService, private dls: DriverLicenceService, 
+    private actRoute: ActivatedRoute) {
+      this.getUserId();
     this.getVehicle();
     this.getDriverLicence();
+    
    }
 
   ngOnInit() {
   }
 
+  getUserId() {
+    this.actRoute.queryParams.subscribe(params => {
+      this.userid = params.userid;
+      // return userid;
+    });
+  }
+
   getVehicle(){
-    this.vs.getVehicle('5ded09784433ee249807bc8e')
+    this.vs.getVehicle(this.userid)
     .subscribe(
       (res) => {
       console.log(res);
-      this.Vehicle = res;
+      this.Vehicle = res[0];
+      //console.log(this.Vehicle);
       },
       (error) => {
         console.log(error);
@@ -34,11 +49,11 @@ export class ApplicantDataComponent implements OnInit {
   }
 
   getDriverLicence(){
-    this.dls.getDriverLicence('5ded67b38ca5362af8ed4f31')
+    this.dls.getDriverLicence(this.userid)
     .subscribe(
       (res) => {
       console.log(res);
-      this.DriverLicence = res;
+      this.DriverLicence = res[0];
       },
       (error) => {
         console.log(error);

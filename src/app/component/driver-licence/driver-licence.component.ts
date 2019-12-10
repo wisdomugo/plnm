@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { DriverLicenceService } from '../../service/driver-licence.service';
 
@@ -11,6 +11,8 @@ import { DriverLicenceService } from '../../service/driver-licence.service';
 })
 export class DriverLicenceComponent implements OnInit {
 
+  userid: string;
+
    // set preview images
    driverLicenceDocPreview: string;
 
@@ -18,11 +20,19 @@ export class DriverLicenceComponent implements OnInit {
    formdata = new FormData();
 
   constructor(private el: ElementRef, public fb: FormBuilder,
-    private router: Router, private dls: DriverLicenceService) { 
+    private router: Router, private dls: DriverLicenceService, private actRoute: ActivatedRoute) { 
       this.createForm();
+      this.getUserId();
     }
 
   ngOnInit() {
+  }
+
+  getUserId() {
+    this.actRoute.queryParams.subscribe(params => {
+      this.userid = params.userid;
+      // return userid;
+    });
   }
 
   createForm() {
@@ -63,6 +73,7 @@ export class DriverLicenceComponent implements OnInit {
     Array.prototype.forEach.call(inputEl, element => {
       this.formdata.append(element.name, element.value);
     });
+    this.formdata.append('user', this.userid)
     if (!this.drivLicenceForm.valid) {
       return false;
     } else {
@@ -70,7 +81,7 @@ export class DriverLicenceComponent implements OnInit {
        .subscribe(
          (res) => {
          console.log(res);
-         this.router.navigate(['applicant-data']);
+         this.router.navigate(['applicant-data'], {queryParams: {userid: this.userid}});
          },
          (error) => {
            console.log(error);

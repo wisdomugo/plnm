@@ -15,7 +15,6 @@ export class ApplicantDataComponent implements OnInit {
   constructor(private vs: VehicleService, private dls: DriverLicenceService) {
     this.getVehicle();
     this.getDriverLicence();
-    this.generatePlateNumber();
    }
 
   ngOnInit() {
@@ -45,10 +44,6 @@ export class ApplicantDataComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  generatePlateNumber(){
-    console.log(this.Vehicle.age);
   }
 
 }

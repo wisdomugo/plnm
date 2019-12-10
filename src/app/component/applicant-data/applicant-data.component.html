@@ -1,8 +1,16 @@
 <section>
   <div class="container">
+      <div class="row">
+      
+          <div class="col-md-8">
+            <h4>Congrats <small>Your Vehicle Plate Number is: <em>{{Vehicle.age}}{{DriverLicence.lgaOrigin}}</em></small></h4>
+            </div>
+      </div>
+
+
     <div class="row">
       
-      <div class="col-md-9">
+      <div class="col-md-8">
         <h3>Vehicle Information</h3>
                 <div class="row">
                     <div class="col-sm-4">
@@ -89,7 +97,74 @@
            
       </div>
 
-      <div class="col-md-6"></div>
+      <div class="col-md-4">
+          <h3>Diver Licence   Information</h3>
+          <div class="row">
+              <div class="col-sm-6">
+                  
+                      <label>Full Name</label>
+                      <h6>{{DriverLicence.fullName}}</h6>
+                    
+                </div>
+
+            
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Driver Licence Document</label>
+                    <img class="preview" src="/assets/uploads/driverlicence/{{DriverLicence.driverLicenceDoc}}" alt="Image Not Seen" />
+                </div>
+            </div>
+            
+
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label>State of Origin</label>
+                <h6>{{DriverLicence.stateOrigin}}</h6>
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label>LGA of Origin</label>
+                <h6>{{DriverLicence.lgaOrigin}}</h6>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label>Date Issued</label>
+                  <h6>{{DriverLicence.issueDate}}</h6>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <h6>{{DriverLicence.expiryDate}}</h6>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label>Date of Birth</label>
+                      <h6>{{DriverLicence.dateBirth}}</h6>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Blood Group</label>
+                        <h6>{{DriverLicence.bloodGroup}}</h6>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Vehcle Category</label>
+                          <h6>{{DriverLicence.vehicleCategory}}</h6>
+                        </div>
+                    </div>
+
+          
+        </div>
+      </div>
       </div>
     </div>
 </section>

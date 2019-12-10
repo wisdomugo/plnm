@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../../service/vehicle.service';
+import { DriverLicenceService } from '../../service/driver-licence.service';
 
 @Component({
   selector: 'app-applicant-data',
@@ -8,9 +9,13 @@ import { VehicleService } from '../../service/vehicle.service';
 })
 export class ApplicantDataComponent implements OnInit {
   Vehicle = {};
+  DriverLicence = {};
+  plateNumber: string;
 
-  constructor(private vs:VehicleService) {
+  constructor(private vs: VehicleService, private dls: DriverLicenceService) {
     this.getVehicle();
+    this.getDriverLicence();
+    this.generatePlateNumber();
    }
 
   ngOnInit() {
@@ -27,6 +32,23 @@ export class ApplicantDataComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getDriverLicence(){
+    this.dls.getDriverLicence('5ded67b38ca5362af8ed4f31')
+    .subscribe(
+      (res) => {
+      console.log(res);
+      this.DriverLicence = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  generatePlateNumber(){
+    console.log(this.Vehicle.age);
   }
 
 }
